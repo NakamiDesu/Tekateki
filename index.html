@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teka-Teki Berhadiah</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f3f3f3; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; }
+        .teka-teki { display: none; margin: 20px 0; }
+        .teka-teki.active { display: block; }
+        .input-password { margin-top: 10px; display: flex; justify-content: center; }
+        .input-password input { padding: 10px; width: 70%; }
+        .input-password button { padding: 10px; }
+        .final-message { display: none; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teka-Teki Berhadiah Rp10.000</h1>
+        <p>Jawab teka-teki berikut untuk melanjutkan. Setiap jawaban adalah password untuk teka-teki selanjutnya.</p>
+
+        <!-- Teka-teki 1 -->
+        <div class="teka-teki active" id="teka-teki-1">
+            <h2>Teka-Teki 1</h2>
+            <p>Ada satu tempat di bumi ini yang tidak memiliki "kemarin". Tempat apakah itu?</p>
+            <div class="input-password">
+                <input type="text" id="jawaban-1" placeholder="Masukkan jawaban...">
+                <button onclick="cekJawaban(1, 'kutub utara')">Submit</button>
+            </div>
+        </div>
+
+        <!-- Teka-teki 2 -->
+        <div class="teka-teki" id="teka-teki-2">
+            <h2>Teka-Teki 2</h2>
+            <p>Saya berjalan tanpa kaki, terbang tanpa sayap, dan menangis tanpa mata. Siapakah saya?</p>
+            <div class="input-password">
+                <input type="text" id="jawaban-2" placeholder="Masukkan jawaban...">
+                <button onclick="cekJawaban(2, 'awan')">Submit</button>
+            </div>
+        </div>
+
+        <!-- Teka-teki 3 -->
+        <div class="teka-teki" id="teka-teki-3">
+            <h2>Teka-Teki 3</h2>
+            <p>Bilangan yang paling kecil namun memiliki 12 pembagi, dan jumlah dari pembaginya adalah 28. Apakah angka tersebut?</p>
+            <div class="input-password">
+                <input type="text" id="jawaban-3" placeholder="Masukkan jawaban...">
+                <button onclick="cekJawaban(3, '28')">Submit</button>
+            </div>
+        </div>
+
+        <!-- Teka-teki 4 -->
+        <div class="teka-teki" id="teka-teki-4">
+            <h2>Teka-Teki 4</h2>
+            <p>Di negara manakah Anda bisa menemukan batu permata dalam pasir putih dari Sungai Merced?</p>
+            <div class="input-password">
+                <input type="text" id="jawaban-4" placeholder="Masukkan jawaban...">
+                <button onclick="cekJawaban(4, 'amerika serikat')">Submit</button>
+            </div>
+        </div>
+
+        <!-- Teka-teki 5 -->
+        <div class="teka-teki" id="teka-teki-5">
+            <h2>Teka-Teki 5</h2>
+            <p>Saya berada di tengah “mata” namun tak terlihat oleh mata. Apa saya?</p>
+            <div class="input-password">
+                <input type="text" id="jawaban-5" placeholder="Masukkan jawaban...">
+                <button onclick="cekJawaban(5, 'huruf t')">Submit</button>
+            </div>
+        </div>
+
+        <!-- Final Message -->
+        <div class="final-message" id="final-message">
+            <p>Selamat! Anda telah menyelesaikan semua teka-teki.</p>
+            <p>Silakan kirimkan semua jawaban (password) ke email Anda.</p>
+        </div>
+    </div>
+
+    <script>
+        function cekJawaban(tahap, jawabanBenar) {
+            const jawabanUser = document.getElementById(`jawaban-${tahap}`).value.toLowerCase().trim();
+            if (jawabanUser === jawabanBenar) {
+                document.getElementById(`teka-teki-${tahap}`).classList.remove('active');
+                const nextStage = document.getElementById(`teka-teki-${tahap + 1}`);
+                if (nextStage) {
+                    nextStage.classList.add('active');
+                } else {
+                    document.getElementById('final-message').style.display = 'block';
+                }
+            } else {
+                alert("Jawaban salah. Coba lagi!");
+            }
+        }
+    </script>
+</body>
+</html>
